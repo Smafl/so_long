@@ -11,6 +11,7 @@ OBJ = $(SRC:.c=.o)
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -g
 
 all: $(NAME)
 

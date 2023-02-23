@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/19 15:14:13 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:20:14 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,41 @@ int	sl_map_path_check(char *argv)
 	int		len;
 	char	*ber;
 
+	i = 0;
+	ber = ".ber";
 	len = ft_strlen(argv) - 4;
-	return (0);
+	while (i != 5)
+	{
+		if (argv[len + i] != ber[i])
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	char	*result;
+	int			fd;
+	t_params	params;
 
-	if (argc <= 0)
-		printf("no arguments was given, expected one\n");
-	else
+	if (argc <= 1)
 	{
-		if (sl_map_path_check(argv))
-			printf("correct path or file\n");
-		else
-			printf("incorrect path or file\n");
+		printf("Expected one more argument\n");
+		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
-	result = get_next_line(fd);
+	if (fd == -1)
+		perror("open() failed");
+	else if (sl_map_path_check(argv[1]))
+	{
+		printf("ok\n");
+		read_map(fd, &params);
+	}
+	else
+	{
+		printf("Wrong file, expected .ber\n");
+	}
 	close(fd);
-	printf("%s", result);
 	// system("leaks a.out");
 	return (0);
 }

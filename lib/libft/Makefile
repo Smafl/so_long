@@ -6,7 +6,7 @@
 #    By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 18:42:22 by ekulichk          #+#    #+#              #
-#    Updated: 2022/11/12 17:53:29 by ekulichk         ###   ########.fr        #
+#    Updated: 2023/02/23 00:36:16 by ekulichk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ OBJ = $(SRC:.c=.o)
 BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -g
 
 all: $(NAME)
 

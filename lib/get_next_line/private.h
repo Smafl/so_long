@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:56:10 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/18 12:50:02 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:24:33 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 35
+#  define BUFFER_SIZE 10
 # endif
 
 // get_next_line_utils.c

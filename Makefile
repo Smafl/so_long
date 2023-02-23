@@ -1,18 +1,20 @@
 
 CC = cc
 NAME = so_long
-SRC = main.c
+SRC = main.c\
+read_map.c
 
 OBJ = $(SRC:.c=.o)
 MLX42 := ./lib/MLX42
 GNL := ./lib/get_next_line
 LIBFT := ./lib/libft
 CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -g
 
 all: mlx gnl libft $(NAME)
 
 mlx:
-	@$(MAKE) -C $(MLX42)
+	@$(MAKE) DEBUG=yes -C $(MLX42)
 
 gnl:
 	@$(MAKE) -C $(GNL)
