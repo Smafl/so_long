@@ -1,0 +1,25 @@
+ToDo:
+
+!+ .ber check
+!+ check a valid path in the map
+! rectangular map check
+! in makefile
+mlx:
+	@$(MAKE) DEBUG=yes -C $(MLX42)
+remove debug=yes (would be faster without it)
+
+----------------------------------------------
+Exit:
+
+If any misconfiguration of any kind
+is encountered in the file,
+the program must exit in a clean way,
+and return "Error\n" followed by an
+explicit error message of your choice.
+----------------------------------------------
+Questions:
+
+makefile -C //: @$(MAKE) -C $(MLX42)
+----------------------------------------------
+Commit
+
