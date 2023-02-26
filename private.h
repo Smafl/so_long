@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/25 14:59:20 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/26 00:57:57 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 
 typedef enum e_map_component
 {
-	SPACE = 0,
-	WALL = 1,
-	COLLECTIBLE = 'C',
-	EXIT = 'E',
-	PLAYER = 'P',
+	SPACE,
+	WALL,
+	COLLECTIBLE,
+	EXIT,
+	PLAYER,
 	ERROR
 }	t_map_component;
 
@@ -38,12 +38,13 @@ typedef struct s_params
 }	t_params;
 
 // read_map.c
-void			map_extend(t_params *params);
-void			push(t_params *params, t_map_component component);
-void			map_init(t_params *self);
 t_map_component	convert_char(char c);
 bool			read_map(t_params *params, int fd);
-// void	map_add_line(t_params *params, char *line);
-// void	print_map(t_params *params);
+
+// read_map_utils.c
+void			map_extend(t_params *params);
+void			map_push(t_params *params, t_map_component component);
+void			map_init(t_params *self);
+
 
 #endif

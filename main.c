@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	else if (sl_map_path_check(argv[1]))
 	{
 		printf("ok\n");
-		read_map(fd, &params);
+		read_map(&params, fd);
 	}
 	else
 	{

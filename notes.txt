@@ -1,8 +1,16 @@
 ToDo:
 
+! The map must contain 1 exit, at least
+1 collectible, and 1 starting position to
+be valid.
+! The map must be closed/surrounded by walls.
+If it’s not, the program must return
+an error.
+! You have to check if there’s a valid
+path in the map.
 !+ .ber check
 !+ check a valid path in the map
-! rectangular map check
+!+ rectangular map check
 ! in makefile
 mlx:
 	@$(MAKE) DEBUG=yes -C $(MLX42)
