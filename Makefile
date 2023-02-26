@@ -2,7 +2,9 @@
 CC = cc
 NAME = so_long
 SRC = main.c\
-read_map.c
+map_check.c\
+read_map.c\
+read_map_utils.c
 
 OBJ = $(SRC:.c=.o)
 MLX42 := ./lib/MLX42

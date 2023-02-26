@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/26 00:57:57 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:16:24 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include "lib/MLX42/include/MLX42/MLX42.h"
 # include "lib/libft/libft.h"
 
+# define UP_WALL			0b0000001
+# define DOWN_WALL			0b0000010
+# define LEFT_WALL			0b0000100
+# define RIGHT_WALL			0b0001000
+# define FLAG_EXIT 			0b0010000
+# define FLAG_PLAYER		0b0100000
+# define FLAG_COLLECTIBLE	0b1000000
+
 typedef enum e_map_component
 {
 	SPACE,
@@ -28,23 +36,33 @@ typedef enum e_map_component
 	ERROR
 }	t_map_component;
 
-typedef struct s_params
+typedef struct s_map_params
 {
 	t_map_component	*map;
+	t_map_component	component;
+	int				flags;
 	int				width;
 	int				height;
 	size_t			map_capacity;
 	size_t			count;
-}	t_params;
+}	t_map_params;
+
+// map_check.c
+bool			read_bytes_check(
+					t_map_params *map_params,
+					int *read_bytes, int *width, char c);
+bool			map_component_check(t_map_params *map_params);
 
 // read_map.c
-t_map_component	convert_char(char c);
-bool			read_map(t_params *params, int fd);
+bool			read_map(t_map_params *map_params, int fd);
 
 // read_map_utils.c
-void			map_extend(t_params *params);
-void			map_push(t_params *params, t_map_component component);
-void			map_init(t_params *self);
-
+bool			map_fill_in(
+					t_map_params *map_params,
+					char c, int *read_bytes, int *width);
+t_map_component	convert_char(t_map_params *map_params, char c);
+void			map_extend(t_map_params *map_params);
+void			map_push(t_map_params *map_params);
+void			map_init(t_map_params *self);
 
 #endif

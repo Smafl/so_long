@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/25 14:50:55 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/26 17:12:05 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	sl_map_path_check(char *argv)
 
 int	main(int argc, char **argv)
 {
-	int			fd;
-	t_params	params;
+	int				fd;
+	t_map_params	map_params;
 
 	if (argc <= 1)
 	{
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	else if (sl_map_path_check(argv[1]))
 	{
 		printf("ok\n");
-		read_map(&params, fd);
+		read_map(&map_params, fd);
 	}
 	else
 	{
