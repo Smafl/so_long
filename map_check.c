@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:41:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/27 18:30:39 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:00:29 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,32 @@ bool	read_bytes_check(
 	return (true);
 }
 
+// bool	map_wall_check(t_map_params *map_params)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = 0;
+// 	y = 0;
+// 	while (y < map_params->height)
+// 	{
+// 		while (x < map_params->width)
+// 		{
+// 			if (x > 0 && x < map_params->width - 1
+// 				&& y > 0 && y < map_params->height - 1)
+// 				continue ;
+// 			if (get_cell(map_params, x, y) != WALL)
+// 			{
+// 				ft_printf("Error: wall");
+// 				return (false);
+// 			}
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	return (true);
+// }
+
 bool	map_wall_check(t_map_params *map_params)
 {
 	int	x;
@@ -42,19 +68,22 @@ bool	map_wall_check(t_map_params *map_params)
 
 	x = 0;
 	y = 0;
+	while (x < map_params->width)
+	{
+		if (get_cell(map_params, x, y) != WALL)
+		{
+			ft_printf("Error: wall 1");
+			return (false);
+		}
+		x++;
+	}
+	x = 0;
 	while (y < map_params->height)
 	{
-		while (x < map_params->width)
+		if (get_cell(map_params, x, y) != WALL)
 		{
-			if (x > 0 && x < map_params->width - 1
-				&& y > 0 && y < map_params->height - 1)
-				continue ;
-			if (get_cell(map_params, x, y) != WALL)
-			{
-				ft_printf("Error: wall");
-				return (false);
-			}
-			x++;
+			ft_printf("Error: wall 2");
+			return (false);
 		}
 		y++;
 	}
