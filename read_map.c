@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 02:50:23 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/26 17:10:28 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:29:01 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ bool	read_map(t_map_params *map_params, int fd)
 	}
 	if (!map_component_check(map_params))
 	{
-		printf("Error: not all components\n");
+		ft_printf("Error: not all components\n");
 		return (false);
 	}
+	if (!map_wall_check(map_params))
+		return (false);
 	return (true);
 }

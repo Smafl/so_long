@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/26 17:12:05 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:56:41 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 	{
-		printf("Expected one more argument\n");
+		ft_printf("Expected one more argument\n");
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
@@ -49,12 +49,13 @@ int	main(int argc, char **argv)
 		perror("open() failed");
 	else if (sl_map_path_check(argv[1]))
 	{
-		printf("ok\n");
+		// delete print
+		ft_printf("ok\n");
 		read_map(&map_params, fd);
 	}
 	else
 	{
-		printf("Wrong file, expected .ber\n");
+		ft_printf("Wrong file, expected .ber\n");
 	}
 	close(fd);
 	// system("leaks a.out");

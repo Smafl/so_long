@@ -1,21 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 21:15:27 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/18 12:58:49 by ekulichk         ###   ########.fr       */
+/*   Created: 2023/01/10 23:06:52 by ekulichk          #+#    #+#             */
+/*   Updated: 2023/02/27 16:56:47 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "private.h"
 
-# include "private.h"
+int	ftp_get_size_dec(long n)
+{
+	int	size;
 
-// get_next_line.c
-char	*get_next_line(int fd);
+	size = 0;
+	if (n == 0)
+		size = 1;
+	while (n)
+	{
+		n /= 10;
+		size++;
+	}
+	return (size);
+}
 
-#endif
+int	ftp_get_size_hex(unsigned long n)
+{
+	int	size;
+
+	size = 0;
+	if (n == 0)
+		size = 1;
+	while (n)
+	{
+		n /= 16;
+		size++;
+	}
+	return (size);
+}

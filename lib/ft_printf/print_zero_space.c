@@ -1,21 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   print_zero_space.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 12:14:04 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/18 12:59:14 by ekulichk         ###   ########.fr       */
+/*   Created: 2023/01/10 23:05:31 by ekulichk          #+#    #+#             */
+/*   Updated: 2023/02/27 16:57:24 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#include "private.h"
 
-# include "private_bonus.h"
+int	ftp_zero(int width)
+{
+	int	printf_len;
 
-// get_next_line_bonus.c
-char	*get_next_line(int fd);
+	printf_len = 0;
+	while (width != 0)
+	{
+		if (write(1, "0", 1) == -1)
+			return (-1);
+		width--;
+		printf_len++;
+	}
+	return (printf_len);
+}
 
-#endif
+int	ftp_space(int width)
+{
+	int	printf_len;
+
+	printf_len = 0;
+	while (width != 0)
+	{
+		if (write(1, " ", 1) == -1)
+			return (-1);
+		width--;
+		printf_len++;
+	}
+	return (printf_len);
+}

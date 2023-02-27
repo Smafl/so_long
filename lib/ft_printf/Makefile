@@ -1,36 +1,35 @@
 CC = cc
-NAME = get_next_line.a
-BONUS_NAME = get_next_line_bonus.a
-
-SRC = get_next_line.c\
-get_next_line_utils.c
-BONUS_SRC = get_next_line_bonus.c\
-get_next_line_utils_bonus.c
-
+NAME = ft_printf.a
+SRC = ft_printf.c\
+get_size.c\
+is_type_flag.c\
+libft_ft_printf.c\
+pars_utils.c\
+parsing.c\
+print_c_str.c\
+print_diuxp.c\
+print_zero_space.c\
+states_proceed_1.c\
+states_proceed_2.c\
+utils.c
 OBJ = $(SRC:.c=.o)
-BONUS_OBJ = $(BONUS_SRC:.c=.o)
-
 CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -g
 
 all: $(NAME)
 
 clean:
-	rm -f $(OBJ) $(BONUS_OBJ)
+	rm -f $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-bonus: $(BONUS_NAME) $(BONUS_OBJ)
-	ar -rcs $(BONUS_NAME) $(BONUS_OBJ)
+bonus: re
 
 $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
-
-$(BONUS_NAME): $(BONUS_OBJ)
-	ar -rcs $(BONUS_NAME) $(BONUS_OBJ)
 
 .PHONY: all clean fclean re bonus
 
