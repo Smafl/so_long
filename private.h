@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/27 18:26:09 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:50:12 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ typedef struct s_map_params
 bool					read_bytes_check(
 							t_map_params *map_params,
 							int *read_bytes, int *width, char c);
-bool					map_wall_check(t_map_params *map_params);
+// bool					map_wall_check(t_map_params *map_params);
+bool					map_up_down_wall_check(t_map_params *map_params);
+bool					map_left_right_wall_check(t_map_params *map_params);
 t_map_component			get_cell(t_map_params *map_params, int x, int y);
 bool					map_component_check(t_map_params *map_params);
 
