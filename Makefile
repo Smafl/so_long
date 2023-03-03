@@ -3,6 +3,7 @@ CC = cc
 NAME = so_long
 SRC = main.c\
 map_check.c\
+map_path_check.c\
 read_map.c\
 read_map_utils.c
 

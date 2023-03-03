@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 02:50:23 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/01 20:51:05 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:53:13 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ bool	read_map(t_map_params *map_params, int fd)
 	}
 	if (!map_up_down_wall_check(map_params)
 		|| !(map_left_right_wall_check(map_params)))
+	{
+		ft_printf("Error: wrong walls\n");
 		return (false);
+	}
 	return (true);
 }

@@ -32,3 +32,5 @@ Questions:
 makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
+
+map check, path check

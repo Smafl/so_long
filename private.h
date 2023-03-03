@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/01 20:50:12 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:56:03 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,23 @@ typedef struct s_map_params
 bool					read_bytes_check(
 							t_map_params *map_params,
 							int *read_bytes, int *width, char c);
-// bool					map_wall_check(t_map_params *map_params);
+bool					map_component_check(t_map_params *map_params);
 bool					map_up_down_wall_check(t_map_params *map_params);
 bool					map_left_right_wall_check(t_map_params *map_params);
 t_map_component			get_cell(t_map_params *map_params, int x, int y);
-bool					map_component_check(t_map_params *map_params);
+
+// map_path_check.c
 
 // read_map.c
 bool					read_map(t_map_params *map_params, int fd);
 
 // read_map_utils.c
+void					map_init(t_map_params *self);
 bool					map_fill_in(
 							t_map_params *map_params,
 							char c, int *read_bytes, int *width);
 t_map_component			convert_char(t_map_params *map_params, char c);
-void					map_extend(t_map_params *map_params);
 void					map_push(t_map_params *map_params);
-void					map_init(t_map_params *self);
+void					map_extend(t_map_params *map_params);
 
 #endif

@@ -6,13 +6,24 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:42:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/27 17:56:46 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:56:08 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
 #include <stdio.h>
 #include <stdbool.h>
+
+void	map_init(t_map_params *map_params)
+{
+	map_params->flags = 0;
+	map_params->height = 0;
+	map_params->width = 0;
+	map_params->map_capacity = 1;
+	map_params->count = 0;
+	map_params->map = malloc(
+			sizeof(t_map_component) * map_params->map_capacity);
+}
 
 bool	map_fill_in(
 	t_map_params *map_params, char c, int *read_bytes, int *width)
@@ -68,6 +79,14 @@ t_map_component	convert_char(t_map_params *map_params, char c)
 		return (ERROR);
 }
 
+void	map_push(t_map_params *map_params)
+{
+	if (map_params->map_capacity == map_params->count)
+		map_extend(map_params);
+	map_params->map[map_params->count] = map_params->component;
+	map_params->count += 1;
+}
+
 void	map_extend(t_map_params *map_params)
 {
 	t_map_component	*new_map;
@@ -80,23 +99,4 @@ void	map_extend(t_map_params *map_params)
 		sizeof(t_map_component) * map_params->map_capacity);
 	map_params->map = new_map;
 	map_params->map_capacity = new_capacity;
-}
-
-void	map_push(t_map_params *map_params)
-{
-	if (map_params->map_capacity == map_params->count)
-		map_extend(map_params);
-	map_params->map[map_params->count] = map_params->component;
-	map_params->count += 1;
-}
-
-void	map_init(t_map_params *map_params)
-{
-	map_params->flags = 0;
-	map_params->height = 0;
-	map_params->width = 0;
-	map_params->map_capacity = 1;
-	map_params->count = 0;
-	map_params->map = malloc(
-			sizeof(t_map_component) * map_params->map_capacity);
 }
