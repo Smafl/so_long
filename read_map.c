@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 02:50:23 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/02 11:53:13 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:27:06 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ bool	read_map(t_map_params *map_params, int fd)
 		ft_printf("Error: wrong walls\n");
 		return (false);
 	}
+	if (!path_exists(map_params))
+		ft_printf("not visited list\n");
 	return (true);
 }

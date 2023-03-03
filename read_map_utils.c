@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:42:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/02 11:56:08 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:54:12 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 
 void	map_init(t_map_params *map_params)
 {
-	map_params->flags = 0;
-	map_params->height = 0;
-	map_params->width = 0;
 	map_params->map_capacity = 1;
 	map_params->count = 0;
 	map_params->map = malloc(
 			sizeof(t_map_component) * map_params->map_capacity);
+	map_params->height = 0;
+	map_params->width = 0;
+	map_params->collectibles = 0;
+	map_params->exit = 0;
+	map_params->player = 0;
 }
 
 bool	map_fill_in(
@@ -30,7 +32,7 @@ bool	map_fill_in(
 {
 	if (*read_bytes != 0 && c != '\n')
 	{
-		map_params->component = convert_char(map_params, c);
+		map_params->component = convert_char(map_params, c, width);
 		if (map_params->component == ERROR)
 		{
 			ft_printf("Error: wrong map components\n");
@@ -54,7 +56,7 @@ bool	map_fill_in(
 	return (true);
 }
 
-t_map_component	convert_char(t_map_params *map_params, char c)
+t_map_component	convert_char(t_map_params *map_params, char c, int *width)
 {
 	if (c == '0')
 		return (SPACE);
@@ -73,6 +75,8 @@ t_map_component	convert_char(t_map_params *map_params, char c)
 	else if (c == 'P')
 	{
 		map_params->player += 1;
+		map_params->player_x = *width;
+		map_params->player_y = map_params->height;
 		return (PLAYER);
 	}
 	else

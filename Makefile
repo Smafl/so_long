@@ -3,7 +3,7 @@ CC = cc
 NAME = so_long
 SRC = main.c\
 map_check.c\
-map_path_check.c\
+path_in_map_check.c\
 read_map.c\
 read_map_utils.c
 
@@ -14,7 +14,7 @@ LIBFT := ./lib/libft
 CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -g
 
-all: mlx  ft_printf libft  $(NAME)
+all: mlx ft_printf libft $(NAME)
 
 mlx:
 	@$(MAKE) DEBUG=yes -C $(MLX42)

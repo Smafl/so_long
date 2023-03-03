@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:41:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/02 11:52:39 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/03 16:19:01 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,5 @@ t_map_component	get_cell(t_map_params *map_params, int x, int y)
 	int	index;
 
 	index = y * map_params->width + x;
-	ft_printf("index %d\n", index);
 	return (map_params->map[index]);
 }

@@ -1,19 +1,19 @@
 ToDo:
 
-! The map must be closed/surrounded by walls.
-If it’s not, the program must return
-an error.
-!+ The map must contain 1 exit, at least
-1 collectible, and 1 starting position to
-be valid.
-! delete extra defined flags
 ! You have to check if there’s a valid
 path in the map.
 ! in makefile
 mlx:
 	@$(MAKE) DEBUG=yes -C $(MLX42)
 remove debug=yes (would be faster without it)
-! remove get_next_line if unused
+!+ The map must be closed/surrounded by walls.
+If it’s not, the program must return
+an error.
+!+ The map must contain 1 exit, at least
+1 collectible, and 1 starting position to
+be valid.
+!+ delete extra defined flags
+!+ remove get_next_line if unused
 !+ check empty strings in map file
 !+ .ber check
 !+ check a valid path in the map
@@ -33,4 +33,4 @@ makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
 
-map check, path check
+valid path in the map check
