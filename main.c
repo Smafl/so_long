@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/02/27 17:56:41 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:38:34 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	main(int argc, char **argv)
 
 	if (argc <= 1)
 	{
-		ft_printf("Expected one more argument\n");
+		ft_printf("Error\nexpected a map in format *.ber\n");
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		perror("open() failed");
+	if (read(fd, NULL, 0) < 0)
+		perror("Error\nread() failed");
 	else if (sl_map_path_check(argv[1]))
 	{
 		// delete print
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		ft_printf("Wrong file, expected .ber\n");
+		ft_printf("Error\nwrong file, expected a map in format *.ber\n");
 	}
 	close(fd);
 	// system("leaks a.out");

@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:41:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/04 10:48:22 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:46:37 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ bool	read_bytes_check(
 {
 	if (*read_bytes == -1)
 	{
-		perror("read() failed");
+		perror("Error\nread() failed");
 		return (false);
 	}
 	else if (*width == 0 && c == '\n')
 	{
-		ft_printf("Error: wrong map\n");
+		ft_printf("Error\nthere is an empty line in a map\n");
 		return (false);
 	}
 	else

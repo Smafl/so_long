@@ -1,5 +1,6 @@
 ToDo:
 
+! delete print OK in main.c
 ! in makefile
 mlx:
 	@$(MAKE) DEBUG=yes -C $(MLX42)
@@ -34,4 +35,4 @@ makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
 
-valid path in the map check
+change error messages, add read() verify

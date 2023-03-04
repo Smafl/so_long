@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:42:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/03 19:54:12 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:44:46 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	map_fill_in(
 		map_params->component = convert_char(map_params, c, width);
 		if (map_params->component == ERROR)
 		{
-			ft_printf("Error: wrong map components\n");
+			ft_printf("Error\nthere is wrong map component\n");
 			return (false);
 		}
 		map_push(map_params);
@@ -48,7 +48,7 @@ bool	map_fill_in(
 			map_params->width = *width;
 		else if (map_params->width != *width)
 		{
-			ft_printf("Error: map is not rectangular\n");
+			ft_printf("Error\na map is not rectangular\n");
 			return (false);
 		}
 		*width = 0;

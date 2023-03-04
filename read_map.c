@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 02:50:23 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/04 10:34:18 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 17:43:58 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ bool	read_map(t_map_params *map_params, int fd)
 	}
 	if (!map_component_check(map_params))
 	{
-		ft_printf("Error: not all components\n");
+		ft_printf("Error\nnot all components in a map\n");
 		return (false);
 	}
 	if (!map_up_down_wall_check(map_params)
 		|| !(map_left_right_wall_check(map_params)))
 	{
-		ft_printf("Error: wrong walls\n");
+		ft_printf("Error\nwall is broken\n");
 		return (false);
 	}
 	if (!path_exists(map_params))
 	{
-		ft_printf("Error: path in map is not valid\n");
+		ft_printf("Error\nthere is no valid path in a map for player\n");
 		return (false);
 	}
 	return (true);
