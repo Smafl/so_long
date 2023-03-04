@@ -6,62 +6,61 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:56:31 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/03 20:25:04 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:50:19 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
 #include <stdbool.h>
 
+static void	visited_init(t_map_params *map_params)
+{
+	map_params->visited = malloc(
+			sizeof(bool) * map_params->width * map_params->height);
+	ft_bzero(
+		map_params->visited, sizeof(
+			bool) * map_params->width * map_params->height);
+}
+
 static bool	is_visited(t_map_params *map_params, int x, int y)
 {
-	int	index;
-
-	index = y * map_params->width + x;
+	return (map_params->visited[get_index(map_params, x, y)]);
 }
 
-void	dfs(int x, int y)
+static void	set_visited(t_map_params *map_params, int x, int y)
 {
-	if (is_visited(x, y))
-		return ;
-	set_visited(x, y);
+	map_params->visited[get_index(map_params, x, y)] = 1;
 }
 
-// static void	set_visited(int x, int y)
-// {
-// 	;
-// }
-
+static void	dfs(t_map_params *map_params, int x, int y)
+{
+	if (get_cell(map_params, x, y) == WALL)
+		return ;
+	if (is_visited(map_params, x, y))
+		return ;
+	set_visited(map_params, x, y);
+	dfs(map_params, x, y + 1);
+	dfs(map_params, x + 1, y);
+	dfs(map_params, x, y - 1);
+	dfs(map_params, x - 1, y);
+}
 
 bool	path_exists(t_map_params *map_params)
 {
+	int	index;
+
+	index = 0;
 	visited_init(map_params);
-	dfs(map_params->player_x, map_params->player_y);
+	dfs(map_params, map_params->player_x, map_params->player_y);
+	while (index < map_params->width * map_params->height)
+	{
+		if (map_params->map[index] == EXIT
+			|| map_params->map[index] == COLLECTIBLE)
+		{
+			if (!map_params->visited[index])
+				return (false);
+		}
+		index++;
+	}
 	return (true);
 }
-
-void	visited_init(t_map_params *map_params)
-{
-	map_params->visited = malloc(
-			sizeof(int *) * map_params->width * map_params->height);
-	ft_bzero(map_params->visited, map_params->width * map_params->height);
-}
-
-/*
-void dfs_visit(int x, int y) {
-  if (is_visited(x, y)) {
-    return;
-  }  
-  set_visited(x, y);
-  for (x_next, y_next) in neighbors(x, y) {
-    if (!is_wall(x_next, y_next)) {
-      dfs_visit(x_next, y_next);
-    }
-  }
-}
-
-bool path_exists(int x, int y_start, int x_finish, int y_f {
-  dfs_visit(x, y);
-  return is_visited(x_finish, y_finish);
-}
-*/

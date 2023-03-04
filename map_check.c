@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:41:54 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/03 16:19:01 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:48:22 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,4 @@ bool	map_left_right_wall_check(t_map_params *map_params)
 		y++;
 	}
 	return (true);
-}
-
-t_map_component	get_cell(t_map_params *map_params, int x, int y)
-{
-	int	index;
-
-	index = y * map_params->width + x;
-	return (map_params->map[index]);
 }

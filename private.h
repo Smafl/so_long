@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/03 20:21:16 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/04 10:49:01 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_map_params
 	int				player;
 	int				player_x;
 	int				player_y;
-	int				*visited;
+	bool			*visited;
 }	t_map_params;
 
 // read_map.c
@@ -49,7 +49,6 @@ typedef struct s_map_params
 bool					read_map(t_map_params *map_params, int fd);
 
 // read_map_utils.c
-// functions for copying a map from file to struct
 void					map_init(t_map_params *self);
 bool					map_fill_in(
 							t_map_params *map_params,
@@ -67,12 +66,13 @@ bool					read_bytes_check(
 bool					map_component_check(t_map_params *map_params);
 bool					map_up_down_wall_check(t_map_params *map_params);
 bool					map_left_right_wall_check(t_map_params *map_params);
+
+// map_check_utils.c
 t_map_component			get_cell(t_map_params *map_params, int x, int y);
+int						get_index(t_map_params *map_params, int x, int y);
 
 // path_in_map_check.c
 // verify a valid path in a map
 bool					path_exists(t_map_params *map_params);
-void					visited_init(t_map_params *map_params);
-void					dfs(int x, int y);
 
 #endif
