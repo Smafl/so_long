@@ -6,17 +6,24 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 11:56:31 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/04 10:50:19 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:06:24 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
+#include <stdio.h>
 #include <stdbool.h>
 
 static void	visited_init(t_map_params *map_params)
 {
 	map_params->visited = malloc(
 			sizeof(bool) * map_params->width * map_params->height);
+	if (map_params->visited == NULL)
+	{
+		free_map(map_params);
+		free_visited(map_params);
+		perror("Error\nmalloc() failed:");
+	}
 	ft_bzero(
 		map_params->visited, sizeof(
 			bool) * map_params->width * map_params->height);

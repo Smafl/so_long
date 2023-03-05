@@ -1,12 +1,14 @@
 
 CC = cc
 NAME = so_long
-SRC = main.c\
+SRC = free_map.c\
+main.c\
 map_check_utils.c\
 map_check.c\
 path_in_map_check.c\
+read_map_utils.c\
 read_map.c\
-read_map_utils.c
+render_map.c
 
 OBJ = $(SRC:.c=.o)
 MLX42 := ./lib/MLX42
@@ -14,6 +16,7 @@ FT_PRINTF := ./lib/ft_printf
 LIBFT := ./lib/libft
 CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -g
+LDFLAGS = -L../LeakSanitizer -llsan -lc++ -Wno-gnu-include-next -I ../LeakSanitize
 
 all: mlx ft_printf libft $(NAME)
 
@@ -27,7 +30,7 @@ libft:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -o $(NAME)
+	$(CC) $(OBJ) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -I include -lglfw -L "/Users/ekulichk/.brew/opt/glfw/lib/" -o $(NAME)
 
 clean:
 	rm -f $(OBJ)

@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:42:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/04 17:44:46 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/05 14:10:19 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void	map_init(t_map_params *map_params)
+int	map_init(t_map_params *map_params)
 {
 	map_params->map_capacity = 1;
 	map_params->count = 0;
 	map_params->map = malloc(
 			sizeof(t_map_component) * map_params->map_capacity);
+	if (map_params->map == NULL)
+		return (0);
 	map_params->height = 0;
 	map_params->width = 0;
 	map_params->collectibles = 0;
 	map_params->exit = 0;
 	map_params->player = 0;
+	return (0);
 }
 
 bool	map_fill_in(
@@ -98,9 +101,16 @@ void	map_extend(t_map_params *map_params)
 
 	new_capacity = map_params->map_capacity * 2;
 	new_map = malloc(sizeof(t_map_component) * new_capacity);
+	if (new_map == NULL)
+	{
+		free_map(map_params);
+		free_visited(map_params);
+		perror("Error\nmalloc() failed:");
+	}
 	ft_memcpy(
 		new_map, map_params->map,
 		sizeof(t_map_component) * map_params->map_capacity);
+	free_map(map_params);
 	map_params->map = new_map;
 	map_params->map_capacity = new_capacity;
 }

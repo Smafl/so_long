@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/04 17:38:34 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:08:09 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 {
 	int				fd;
 	t_map_params	map_params;
+	t_map_render	map_render;
 
 	if (argc <= 1)
 	{
@@ -52,12 +53,15 @@ int	main(int argc, char **argv)
 		// delete print
 		ft_printf("ok\n");
 		read_map(&map_params, fd);
+		initialize_image(&map_render, &map_params);
 	}
 	else
 	{
 		ft_printf("Error\nwrong file, expected a map in format *.ber\n");
 	}
 	close(fd);
-	// system("leaks a.out");
+	free_map(&map_params);
+	free_visited(&map_params);
+	// system("leaks so_long");
 	return (0);
 }

@@ -1,5 +1,8 @@
 ToDo:
 
+! check Danila's makefile and add install rule
+! delete LDFLAGS and -g flags from makefile
+ $(LDFLAGS)
 ! delete print OK in main.c
 ! in makefile
 mlx:
@@ -35,4 +38,4 @@ makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
 
-change error messages, add read() verify
+free_map.c, 
