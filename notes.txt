@@ -38,4 +38,4 @@ makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
 
-free_map.c, 
+free_map.c, render map

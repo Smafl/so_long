@@ -2,6 +2,8 @@
 CC = cc
 NAME = so_long
 SRC = free_map.c\
+initialize_image.c\
+key_hooks.c\
 main.c\
 map_check_utils.c\
 map_check.c\

@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/05 19:08:17 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:45:44 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,21 @@ typedef enum e_map_component
 	ERROR
 }	t_map_component;
 
+typedef struct s_map_render
+{
+	mlx_t			*mlx;
+	mlx_texture_t	*floor_texture;
+	mlx_texture_t	*exit_texture;
+	mlx_texture_t	*collectible_texture;
+	mlx_texture_t	*wall_texture;
+	mlx_texture_t	*p_stand_texture;
+	mlx_image_t		*floor;
+	mlx_image_t		*exit;
+	mlx_image_t		*collectible;
+	mlx_image_t		*wall;
+	mlx_image_t		*p_stand;
+}	t_map_render;
+
 typedef struct s_map_params
 {
 	t_map_component	*map;
@@ -46,20 +61,13 @@ typedef struct s_map_params
 	int				player_x;
 	int				player_y;
 	bool			*visited;
+	t_map_render	*map_render;
 }	t_map_params;
-
-typedef struct s_map_render
-{
-	mlx_t			*mlx;
-	mlx_texture_t	*floor_texture;
-	mlx_texture_t	*exit_texture;
-	mlx_image_t		*floor;
-	mlx_image_t		*exit;
-}	t_map_render;
 
 // read_map.c
 // read a map from FD and call functions for verify map's components
 bool					read_map(t_map_params *map_params, int fd);
+bool					map_verify(t_map_params *map_params);
 
 // read_map_utils.c
 int						map_init(t_map_params *self);
@@ -91,9 +99,16 @@ bool					path_exists(t_map_params *map_params);
 // free_map.c
 void					free_map(t_map_params *map_params);
 void					free_visited(t_map_params *map_params);
+void					free_map_render(t_map_params *map_params);
+
+// initialize_image.c
+void					initialize_game_images(t_map_params *map_params);
 
 // render_map.c
-void					initialize_image(
-							t_map_render *map_render, t_map_params *map_params);
+void					render_map(t_map_params *map_params);
+void					put_image(t_map_params *map_params, int *x, int *y);
+
+// key_hooks.c
+void					keyhook(mlx_key_data_t keydata, void *param);
 
 #endif
