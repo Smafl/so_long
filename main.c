@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/06 18:14:52 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:03:34 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 			close(fd);
 			return (1);
 		}
-		initialize_game_images(&map_params);
+		start_game(&map_params);
 		free_map(&map_params);
 		free_visited(&map_params);
 		free_map_render(&map_params);

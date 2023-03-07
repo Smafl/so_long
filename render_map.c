@@ -6,51 +6,11 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:55:16 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/06 18:33:06 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:08:51 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
-
-void	put_image(t_map_params *map_params, int *x, int *y)
-{
-	int	index;
-
-	index = get_index(map_params, *x / 32, *y / 32);
-	if (map_params->map[index] == WALL)
-	{
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->wall, *x, *y);
-	}
-	else if (map_params->map[index] == SPACE)
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
-	else if (map_params->map[index] == EXIT)
-	{
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->exit, *x, *y);
-	}
-	else if (map_params->map[index] == COLLECTIBLE)
-	{
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
-		mlx_image_to_window(
-			map_params->map_render->mlx,
-			map_params->map_render->collectible, *x, *y);
-	}
-	else if (map_params->map[index] == PLAYER)
-	{
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
-		mlx_image_to_window(
-			map_params->map_render->mlx,
-			map_params->map_render->p_stand, *x, *y);
-	}
-}
 
 void	render_map(t_map_params *map_params)
 {
@@ -70,4 +30,51 @@ void	render_map(t_map_params *map_params)
 		put_image(map_params, &x, &y);
 		x += STEP;
 	}
+}
+
+void	put_image(t_map_params *map_params, int *x, int *y)
+{
+	int	index;
+
+	index = get_index(map_params, *x / 32, *y / 32);
+	if (map_params->map[index] == WALL)
+		mlx_image_to_window(
+			map_params->map_render->mlx, map_params->map_render->wall, *x, *y);
+	else if (map_params->map[index] == SPACE)
+		put_floor(map_params, x, y);
+	else if (map_params->map[index] == EXIT)
+	{
+		put_floor(map_params, x, y);
+		mlx_image_to_window(
+			map_params->map_render->mlx, map_params->map_render->exit, *x, *y);
+		map_params->exit_x = *x;
+		map_params->exit_y = *y;
+	}
+	else if (map_params->map[
+			index] == COLLECTIBLE)
+	{
+		put_floor(map_params, x, y);
+		mlx_image_to_window(map_params->map_render->mlx,
+			map_params->map_render->collectible, *x, *y);
+	}
+	else if (map_params->map[index] == PLAYER)
+		put_player(map_params, x, y);
+}
+
+void	put_player(t_map_params *map_params, int *x, int *y)
+{
+	put_floor(map_params, x, y);
+	mlx_image_to_window(map_params->map_render->mlx,
+		map_params->map_render->p_stand, *x, *y);
+	mlx_set_instance_depth(map_params->map_render->p_stand->instances, 2);
+	map_params->player_x = *x;
+	map_params->player_y = *y;
+}
+
+void	put_floor(t_map_params *map_params, int *x, int *y)
+{
+	mlx_image_to_window(
+		map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
+	mlx_set_instance_depth(&map_params->map_render->floor->instances[
+		map_params->map_render->floor->count - 1], 1);
 }

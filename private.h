@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/06 18:45:44 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:13:17 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ typedef enum e_map_component
 	SPACE,
 	WALL,
 	COLLECTIBLE,
-	EXIT,
 	PLAYER,
+	EXIT,
+	OPEN_EXIT,
 	ERROR
 }	t_map_component;
 
@@ -37,11 +38,13 @@ typedef struct s_map_render
 	mlx_t			*mlx;
 	mlx_texture_t	*floor_texture;
 	mlx_texture_t	*exit_texture;
+	mlx_texture_t	*open_exit_texture;
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*wall_texture;
 	mlx_texture_t	*p_stand_texture;
 	mlx_image_t		*floor;
 	mlx_image_t		*exit;
+	mlx_image_t		*open_exit;
 	mlx_image_t		*collectible;
 	mlx_image_t		*wall;
 	mlx_image_t		*p_stand;
@@ -56,10 +59,14 @@ typedef struct s_map_params
 	int				width;
 	int				height;
 	int				collectibles;
+	int				collected;
 	int				exit;
+	int				exit_x;
+	int				exit_y;
 	int				player;
 	int				player_x;
 	int				player_y;
+	int				steps_counter;
 	bool			*visited;
 	t_map_render	*map_render;
 }	t_map_params;
@@ -101,14 +108,32 @@ void					free_map(t_map_params *map_params);
 void					free_visited(t_map_params *map_params);
 void					free_map_render(t_map_params *map_params);
 
+// start_game.c
+void					start_game(t_map_params *map_params);
+
 // initialize_image.c
 void					initialize_game_images(t_map_params *map_params);
 
 // render_map.c
 void					render_map(t_map_params *map_params);
 void					put_image(t_map_params *map_params, int *x, int *y);
+void					put_player(t_map_params *map_params, int *x, int *y);
+void					put_floor(t_map_params *map_params, int *x, int *y);
 
-// key_hooks.c
-void					keyhook(mlx_key_data_t keydata, void *param);
+// my_hooks.c
+// void					my_loop_hook(void *param);
+void					my_keyhook(mlx_key_data_t keydata, void *param);
+
+// go_player.c
+void					go_right(mlx_key_data_t keydata, t_map_params *param);
+void					go_left(mlx_key_data_t keydata, t_map_params *param);
+void					go_down(mlx_key_data_t keydata, t_map_params *param);
+void					go_up(mlx_key_data_t keydata, t_map_params *param);
+
+// move_player.c
+void					movement_right(t_map_params *param);
+void					movement_left(t_map_params *param);
+void					movement_down(t_map_params *param);
+void					movement_up(t_map_params *param);
 
 #endif
