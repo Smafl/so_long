@@ -10,6 +10,7 @@ map_check.c\
 move_player.c\
 my_hooks.c\
 path_in_map_check.c\
+put_images.c\
 read_map_utils.c\
 read_map.c\
 render_map.c\

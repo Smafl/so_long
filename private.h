@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 19:13:17 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:24:56 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,24 +116,33 @@ void					initialize_game_images(t_map_params *map_params);
 
 // render_map.c
 void					render_map(t_map_params *map_params);
-void					put_image(t_map_params *map_params, int *x, int *y);
+
+// put_images.c
+void					put_images(t_map_params *map_params, int *x, int *y);
 void					put_player(t_map_params *map_params, int *x, int *y);
+void					put_exit(t_map_params *map_params, int *x, int *y);
+void					put_collectible(
+							t_map_params *map_params, int *x, int *y);
 void					put_floor(t_map_params *map_params, int *x, int *y);
 
 // my_hooks.c
 // void					my_loop_hook(void *param);
-void					my_keyhook(mlx_key_data_t keydata, void *param);
+void					my_keyhook(
+							mlx_key_data_t keydata, t_map_params *map_params);
 
 // go_player.c
-void					go_right(mlx_key_data_t keydata, t_map_params *param);
-void					go_left(mlx_key_data_t keydata, t_map_params *param);
-void					go_down(mlx_key_data_t keydata, t_map_params *param);
-void					go_up(mlx_key_data_t keydata, t_map_params *param);
+void					go_right(
+							mlx_key_data_t keydata, t_map_params *map_params);
+void					go_left(
+							mlx_key_data_t keydata, t_map_params *map_params);
+void					go_down(
+							mlx_key_data_t keydata, t_map_params *map_params);
+void					go_up(mlx_key_data_t keydata, t_map_params *map_params);
 
 // move_player.c
-void					movement_right(t_map_params *param);
-void					movement_left(t_map_params *param);
-void					movement_down(t_map_params *param);
-void					movement_up(t_map_params *param);
+void					movement_right(t_map_params *map_params);
+void					movement_left(t_map_params *map_params);
+void					movement_down(t_map_params *map_params);
+void					movement_up(t_map_params *map_params);
 
 #endif

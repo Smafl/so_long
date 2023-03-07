@@ -6,92 +6,111 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:41:57 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 19:14:33 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:20:33 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
 
-void	go_right(mlx_key_data_t keydata, t_map_params *param)
+static void	take_collectibles(t_map_params *map_params)
 {
-	if (keydata.action == MLX_RELEASE)
+	int				i;
+	mlx_instance_t	*temp;
+
+	i = 0;
+	map_params->map[get_index(map_params, map_params->player_x / STEP,
+			map_params->player_y / STEP)] = SPACE;
+	temp = map_params->map_render->collectible->instances;
+	while (i < map_params->map_render->collectible->count)
 	{
-		if (get_cell(param, param->player_x / STEP + 1,
-				param->player_y / STEP) == WALL)
+		if (temp[i].x == map_params->player_x
+			&& temp[i].y == map_params->player_y)
+			map_params->map_render->collectible->instances[i].z = 0;
+		i++;
+	}
+	map_params->collected++;
+}
+
+void	go_right(mlx_key_data_t keydata, t_map_params *map_params)
+{
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
+	{
+		if (get_cell(map_params, map_params->player_x / STEP + 1,
+				map_params->player_y / STEP) == WALL)
 				;
-		else if (get_cell(param, param->player_x / STEP + 1,
-				param->player_y / STEP) == OPEN_EXIT)
+		else if (get_cell(map_params, map_params->player_x / STEP + 1,
+				map_params->player_y / STEP) == OPEN_EXIT)
 				;
-		else if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP) == COLLECTIBLE)
+		else if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP) == COLLECTIBLE)
 		{
-			param->collected++;
-			movement_right(param);
+			take_collectibles(map_params);
+			movement_right(map_params);
 		}
 		else
-			movement_right(param);
+			movement_right(map_params);
 	}
 }
 
-void	go_left(mlx_key_data_t keydata, t_map_params *param)
+void	go_left(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
 	{
-		if (get_cell(param, param->player_x / STEP - 1,
-				param->player_y / STEP) == WALL)
+		if (get_cell(map_params, map_params->player_x / STEP - 1,
+				map_params->player_y / STEP) == WALL)
 				;
-		else if (get_cell(param, param->player_x / STEP - 1,
-				param->player_y / STEP) == OPEN_EXIT)
+		else if (get_cell(map_params, map_params->player_x / STEP - 1,
+				map_params->player_y / STEP) == OPEN_EXIT)
 				;
-		else if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP) == COLLECTIBLE)
+		else if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP) == COLLECTIBLE)
 		{
-			param->collected++;
-			movement_left(param);
+			take_collectibles(map_params);
+			movement_left(map_params);
 		}
 		else
-			movement_left(param);
+			movement_left(map_params);
 	}
 }
 
-void	go_down(mlx_key_data_t keydata, t_map_params *param)
+void	go_down(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
 	{
-		if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP + 1) == WALL)
+		if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP + 1) == WALL)
 				;
-		else if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP + 1) == OPEN_EXIT)
+		else if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP + 1) == OPEN_EXIT)
 				;
-		else if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP) == COLLECTIBLE)
+		else if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP) == COLLECTIBLE)
 		{
-			param->collected++;
-			movement_down(param);
+			take_collectibles(map_params);
+			movement_down(map_params);
 		}
 		else
-			movement_down(param);
+			movement_down(map_params);
 	}
 }
 
-void	go_up(mlx_key_data_t keydata, t_map_params *param)
+void	go_up(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
 	{
-		if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP - 1) == WALL)
+		if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP - 1) == WALL)
 				;
-		else if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP - 1) == OPEN_EXIT)
+		else if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP - 1) == OPEN_EXIT)
 				;
-		else if (get_cell(param, param->player_x / STEP,
-				param->player_y / STEP) == COLLECTIBLE)
+		else if (get_cell(map_params, map_params->player_x / STEP,
+				map_params->player_y / STEP) == COLLECTIBLE)
 		{
-			param->collected++;
-			movement_up(param);
+			take_collectibles(map_params);
+			movement_up(map_params);
 		}
 		else
-			movement_up(param);
+			movement_up(map_params);
 	}
 }

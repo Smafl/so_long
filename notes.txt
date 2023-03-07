@@ -38,4 +38,4 @@ makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
 
-player can go, can count collectibles
+can collect collectibles

@@ -6,36 +6,36 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:52:31 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 17:52:43 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:38:24 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
 
-void	movement_right(t_map_params *param)
+void	movement_right(t_map_params *map_params)
 {
-	param->map_render->p_stand->instances->x += STEP;
-	param->player_x += STEP;
-	param->steps_counter++;
+	map_params->map_render->p_stand->instances->x += STEP;
+	map_params->player_x += STEP;
+	map_params->steps_counter++;
 }
 
-void	movement_left(t_map_params *param)
+void	movement_left(t_map_params *map_params)
 {
-	param->map_render->p_stand->instances->x -= STEP;
-	param->player_x -= STEP;
-	param->steps_counter++;
+	map_params->map_render->p_stand->instances->x -= STEP;
+	map_params->player_x -= STEP;
+	map_params->steps_counter++;
 }
 
-void	movement_down(t_map_params *param)
+void	movement_down(t_map_params *map_params)
 {
-	param->map_render->p_stand->instances->y += STEP;
-	param->player_y += STEP;
-	param->steps_counter++;
+	map_params->map_render->p_stand->instances->y += STEP;
+	map_params->player_y += STEP;
+	map_params->steps_counter++;
 }
 
-void	movement_up(t_map_params *param)
+void	movement_up(t_map_params *map_params)
 {
-	param->map_render->p_stand->instances->y -= STEP;
-	param->player_y -= STEP;
-	param->steps_counter++;
+	map_params->map_render->p_stand->instances->y -= STEP;
+	map_params->player_y -= STEP;
+	map_params->steps_counter++;
 }
