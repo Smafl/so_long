@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 18:32:40 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 21:05:51 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:29:02 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	my_keyhook(mlx_key_data_t keydata, t_map_params *map_params)
 
 /*
 
-open exit 1
-floor 2
-collectible 3
-exit 3
-player 4
+floor 1
+collectible 2
+open exit 2
+exit 2
+player 3
 
 */

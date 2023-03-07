@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:03:51 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 21:17:59 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:33:33 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	take_collectibles(t_map_params *map_params)
 	{
 		if (temp[i].x == map_params->player_x
 			&& temp[i].y == map_params->player_y)
-			map_params->map_render->collectible->instances[i].z = 0;
+			map_params->map_render->collectible->instances[i].enabled = false;
 		i++;
 	}
 	map_params->collected++;
@@ -36,15 +36,9 @@ void	check_collectibles(t_map_params *map_params)
 {
 	if (map_params->collectibles == map_params->collected)
 	{
-		map_params->map_render->exit->instances->z = 1;
-		mlx_image_to_window(
-			map_params->map_render->mlx, map_params->map_render->floor,
-			map_params->exit_x, map_params->exit_y);
-		mlx_set_instance_depth(&map_params->map_render->floor->instances[
-			map_params->map_render->floor->count - 1], 2);
-		map_params->map_render->open_exit->instances->z = 3;
+		map_params->map_render->exit->instances->enabled = false;
+		map_params->map_render->open_exit->instances->enabled = true;
 	}
-	end_game(map_params);
 }
 
 void	end_game(t_map_params *map_params)

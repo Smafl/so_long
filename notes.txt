@@ -38,4 +38,4 @@ makefile -C //: @$(MAKE) -C $(MLX42)
 ----------------------------------------------
 Commit
 
-make counter for steps, start end_game.c
+finish mandatory part
