@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 20:24:56 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:18:30 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,10 @@ void					movement_right(t_map_params *map_params);
 void					movement_left(t_map_params *map_params);
 void					movement_down(t_map_params *map_params);
 void					movement_up(t_map_params *map_params);
+
+// end_game.c
+void					take_collectibles(t_map_params *map_params);
+void					check_collectibles(t_map_params *map_params);
+void					end_game(t_map_params *map_params);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 18:32:40 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 19:40:16 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:05:51 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,13 @@ void	my_keyhook(mlx_key_data_t keydata, t_map_params *map_params)
 	if (keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
 		go_up(keydata, map_params);
 }
+
+/*
+
+open exit 1
+floor 2
+collectible 3
+exit 3
+player 4
+
+*/

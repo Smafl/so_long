@@ -1,7 +1,8 @@
 
 CC = cc
 NAME = so_long
-SRC = free_map.c\
+SRC = end_game.c\
+free_map.c\
 go_player.c\
 initialize_image.c\
 main.c\

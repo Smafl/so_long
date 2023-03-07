@@ -6,30 +6,11 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:41:57 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 20:20:33 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:03:49 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private.h"
-
-static void	take_collectibles(t_map_params *map_params)
-{
-	int				i;
-	mlx_instance_t	*temp;
-
-	i = 0;
-	map_params->map[get_index(map_params, map_params->player_x / STEP,
-			map_params->player_y / STEP)] = SPACE;
-	temp = map_params->map_render->collectible->instances;
-	while (i < map_params->map_render->collectible->count)
-	{
-		if (temp[i].x == map_params->player_x
-			&& temp[i].y == map_params->player_y)
-			map_params->map_render->collectible->instances[i].z = 0;
-		i++;
-	}
-	map_params->collected++;
-}
 
 void	go_right(mlx_key_data_t keydata, t_map_params *map_params)
 {

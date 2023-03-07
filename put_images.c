@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:23:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 20:27:23 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:55:45 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,11 @@ void	put_exit(t_map_params *map_params, int *x, int *y)
 {
 	put_floor(map_params, x, y);
 	mlx_image_to_window(
+		map_params->map_render->mlx, map_params->map_render->open_exit, *x, *y);
+	mlx_set_instance_depth(map_params->map_render->open_exit->instances, 1);
+	mlx_image_to_window(
 		map_params->map_render->mlx, map_params->map_render->exit, *x, *y);
-	mlx_set_instance_depth(map_params->map_render->exit->instances, 2);
+	mlx_set_instance_depth(map_params->map_render->exit->instances, 3);
 	map_params->exit_x = *x;
 	map_params->exit_y = *y;
 }
@@ -57,7 +60,7 @@ void	put_collectible(t_map_params *map_params, int *x, int *y)
 	mlx_image_to_window(map_params->map_render->mlx,
 		map_params->map_render->collectible, *x, *y);
 	mlx_set_instance_depth(&map_params->map_render->collectible->instances[
-		map_params->map_render->collectible->count - 1], 2);
+		map_params->map_render->collectible->count - 1], 3);
 }
 
 void	put_floor(t_map_params *map_params, int *x, int *y)
@@ -65,5 +68,5 @@ void	put_floor(t_map_params *map_params, int *x, int *y)
 	mlx_image_to_window(
 		map_params->map_render->mlx, map_params->map_render->floor, *x, *y);
 	mlx_set_instance_depth(&map_params->map_render->floor->instances[
-		map_params->map_render->floor->count - 1], 1);
+		map_params->map_render->floor->count - 1], 2);
 }
