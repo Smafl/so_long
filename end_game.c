@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:03:51 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 21:33:33 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:52:38 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,9 @@ void	check_collectibles(t_map_params *map_params)
 
 void	end_game(t_map_params *map_params)
 {
-	if (map_params->player_x == map_params->exit_x
-		&& map_params->player_y == map_params->exit_y)
-	{
-		free_map(map_params);
-		free_visited(map_params);
-		free_map_render(map_params);
-		mlx_terminate(map_params->map_render->mlx);
-	}
+	mlx_terminate(map_params->map_render->mlx);
+	free_map(map_params);
+	free_visited(map_params);
+	free_map_render(map_params);
+	exit(EXIT_SUCCESS);
 }

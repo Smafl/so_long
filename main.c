@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 21:14:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 18:03:34 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:52:18 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ int	main(int argc, char **argv)
 			return (1);
 		}
 		start_game(&map_params);
-		free_map(&map_params);
-		free_visited(&map_params);
-		free_map_render(&map_params);
 	}
 	else
 		ft_printf("Error\nwrong file, expected a map in format *.ber\n");

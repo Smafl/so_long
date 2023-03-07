@@ -24,6 +24,7 @@ LIBFT := ./lib/libft
 CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -g
 LDFLAGS = -L../LeakSanitizer -llsan -lc++ -Wno-gnu-include-next -I ../LeakSanitize
+FSANFLAG += -fsanitize=address -g3
 
 all: mlx ft_printf libft $(NAME)
 
@@ -37,7 +38,7 @@ libft:
 	@$(MAKE) -C $(LIBFT)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -I include -lglfw -L "/Users/ekulichk/.brew/opt/glfw/lib/" -o $(NAME)
+	$(CC) $(OBJ) $(FSANFLAG) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -I include -lglfw -L "/Users/ekulichk/.brew/opt/glfw/lib/" -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
