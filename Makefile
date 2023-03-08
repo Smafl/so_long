@@ -54,7 +54,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(FSANFLAG) $(LDFLAGS) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -I include -lglfw -L "/Users/ekulichk/.brew/opt/glfw/lib/" -o $(NAME)
 
 $(NAME_BNS): $(OBJ_BNS)
-	$(CC) $(OBJ) $(FSANFLAG) $(LDFLAGS) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -I include -lglfw -L "/Users/ekulichk/.brew/opt/glfw/lib/" -o $(NAME)
+	$(CC) $(OBJ_BNS) $(FSANFLAG) $(LDFLAGS) $(MLX42)/libmlx42.a $(FT_PRINTF)/ft_printf.a $(LIBFT)/libft.a -I include -lglfw -L "/Users/ekulichk/.brew/opt/glfw/lib/" -o $(NAME)
 
 clean:
 	rm -f $(OBJ)

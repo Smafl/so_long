@@ -1,5 +1,6 @@
 ToDo:
 
+! resize steps_counter and change color
 ! check Danila's makefile and add install rule
 ! delete LDFLAGS and -g flags from makefile
  $(LDFLAGS)

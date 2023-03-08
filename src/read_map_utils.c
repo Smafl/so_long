@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 13:42:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 19:14:12 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:49:15 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	map_init(t_map_params *map_params)
 	map_params->collected = 0;
 	map_params->exit = 0;
 	map_params->player = 0;
+	map_params->steps_counter = 0;
 	return (0);
 }
 

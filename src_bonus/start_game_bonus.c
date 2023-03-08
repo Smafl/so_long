@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:38:50 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 15:49:44 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:57:45 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	start_game(t_map_params *map_params, int fd)
 	initialize_game_images(map_params);
 	mlx_key_hook(
 		map_params->map_render->mlx, (mlx_keyfunc) my_keyhook, map_params);
+	// mlx_loop_hook(map_params->map_render->mlx, );
 	mlx_loop(map_params->map_render->mlx);
 	end_game(map_params);
 	return (0);
@@ -37,8 +38,14 @@ static void	initialize_texture(t_map_params *map_params)
 	map_params->map_render->collectible_texture = mlx_load_png(
 			"img/collectible_32.png");
 	map_params->map_render->wall_texture = mlx_load_png("img/wall_32.png");
-	map_params->map_render->p_stand_texture = mlx_load_png(
-			"img/p_stand_32.png");
+	map_params->map_render->p_down_texture = mlx_load_png(
+			"img/p_down_32.png");
+	map_params->map_render->p_up_texture = mlx_load_png(
+			"img/p_up_32.png");
+	map_params->map_render->p_right_texture = mlx_load_png(
+			"img/p_right_32.png");
+	map_params->map_render->p_left_texture = mlx_load_png(
+			"img/p_left_32.png");
 }
 
 static void	initialize_image(t_map_params *map_params)
@@ -55,9 +62,18 @@ static void	initialize_image(t_map_params *map_params)
 			map_params->map_render->collectible_texture);
 	map_params->map_render->wall = mlx_texture_to_image(
 			map_params->map_render->mlx, map_params->map_render->wall_texture);
-	map_params->map_render->p_stand = mlx_texture_to_image(
+	map_params->map_render->p_down = mlx_texture_to_image(
 			map_params->map_render->mlx,
-			map_params->map_render->p_stand_texture);
+			map_params->map_render->p_down_texture);
+	map_params->map_render->p_up = mlx_texture_to_image(
+			map_params->map_render->mlx,
+			map_params->map_render->p_up_texture);
+	map_params->map_render->p_right = mlx_texture_to_image(
+			map_params->map_render->mlx,
+			map_params->map_render->p_right_texture);
+	map_params->map_render->p_left = mlx_texture_to_image(
+			map_params->map_render->mlx,
+			map_params->map_render->p_left_texture);
 }
 
 void	initialize_game_images(t_map_params *map_params)
@@ -88,4 +104,5 @@ void	render_map(t_map_params *map_params)
 		put_images(map_params, &x, &y);
 		x += STEP;
 	}
+	put_steps_counter(map_params);
 }

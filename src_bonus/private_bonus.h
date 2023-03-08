@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 15:10:35 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:22:35 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,20 @@ typedef struct s_map_render
 	mlx_texture_t	*open_exit_texture;
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*wall_texture;
-	mlx_texture_t	*p_stand_texture;
+	mlx_texture_t	*p_down_texture;
+	mlx_texture_t	*p_up_texture;
+	mlx_texture_t	*p_right_texture;
+	mlx_texture_t	*p_left_texture;
 	mlx_image_t		*floor;
 	mlx_image_t		*exit;
 	mlx_image_t		*open_exit;
 	mlx_image_t		*collectible;
 	mlx_image_t		*wall;
-	mlx_image_t		*p_stand;
+	mlx_image_t		*p_down;
+	mlx_image_t		*p_up;
+	mlx_image_t		*p_right;
+	mlx_image_t		*p_left;
+	mlx_image_t		*steps;
 }	t_map_render;
 
 typedef struct s_map_params
@@ -71,73 +78,71 @@ typedef struct s_map_params
 	t_map_render	*map_render;
 }	t_map_params;
 
-// read_map.c
+// read_map_bonus.c
 // read a map from FD and call functions for verify map's components
-bool					read_map(t_map_params *map_params, int fd);
-bool					read_bytes_check(
-							t_map_params *map_params,
-							int *read_bytes, int *width, char c);
-bool					map_verify(t_map_params *map_params);
+bool				read_map(t_map_params *map_params, int fd);
+bool				read_bytes_check(t_map_params *map_params,
+						int *read_bytes, int *width, char c);
+bool				map_verify(t_map_params *map_params);
 
-// read_map_utils.c
-int						map_init(t_map_params *self);
-bool					map_fill_in(
-							t_map_params *map_params,
-							char c, int *read_bytes, int *width);
-t_map_component			convert_char(
-							t_map_params *map_params, char c, int *width);
-void					map_push(t_map_params *map_params);
-void					map_extend(t_map_params *map_params);
+// read_map_utils_bonus.c
+int					map_init(t_map_params *self);
+bool				map_fill_in(t_map_params *map_params,
+						char c, int *read_bytes, int *width);
+t_map_component		convert_char(
+						t_map_params *map_params, char c, int *width);
+void				map_push(t_map_params *map_params);
+void				map_extend(t_map_params *map_params);
 
-// map_check.c
+// map_check_bonus.c
 // functions for verify map's components
-bool					map_component_check(t_map_params *map_params);
-bool					map_up_down_wall_check(t_map_params *map_params);
-bool					map_left_right_wall_check(t_map_params *map_params);
-t_map_component			get_cell(t_map_params *map_params, int x, int y);
-int						get_index(t_map_params *map_params, int x, int y);
+bool				map_component_check(t_map_params *map_params);
+bool				map_up_down_wall_check(t_map_params *map_params);
+bool				map_left_right_wall_check(t_map_params *map_params);
+t_map_component		get_cell(t_map_params *map_params, int x, int y);
+int					get_index(t_map_params *map_params, int x, int y);
 
-// path_in_map_check.c
+// path_in_map_check_bonus.c
 // verify a valid path in a map
-bool					path_exists(t_map_params *map_params);
+bool				path_exists(t_map_params *map_params);
 
-// start_game.c
-int						start_game(t_map_params *map_params, int fd);
-void					initialize_game_images(t_map_params *map_params);
-void					render_map(t_map_params *map_params);
+// start_game_bonus.c
+int					start_game(t_map_params *map_params, int fd);
+void				initialize_game_images(t_map_params *map_params);
+void				render_map(t_map_params *map_params);
 
-// put_images.c
-void					put_images(t_map_params *map_params, int *x, int *y);
-void					put_player(t_map_params *map_params, int *x, int *y);
-void					put_exit(t_map_params *map_params, int *x, int *y);
-void					put_collectible(
-							t_map_params *map_params, int *x, int *y);
-void					put_floor(t_map_params *map_params, int *x, int *y);
+// put_images_bonus.c
+void				put_images(t_map_params *map_params, int *x, int *y);
+void				put_player(t_map_params *map_params, int *x, int *y);
+void				put_exit(t_map_params *map_params, int *x, int *y);
+void				put_collectible(t_map_params *map_params, int *x, int *y);
+void				put_floor(t_map_params *map_params, int *x, int *y);
 
-// go_player.c
-void					my_keyhook(
-							mlx_key_data_t keydata, t_map_params *map_params);
-void					go_right(
-							mlx_key_data_t keydata, t_map_params *map_params);
-void					go_left(
-							mlx_key_data_t keydata, t_map_params *map_params);
-void					go_down(
-							mlx_key_data_t keydata, t_map_params *map_params);
-void					go_up(mlx_key_data_t keydata, t_map_params *map_params);
+// go_player_bonus.c
+void				my_keyhook(
+						mlx_key_data_t keydata, t_map_params *map_params);
+void				go_right(
+						mlx_key_data_t keydata, t_map_params *map_params);
+void				go_left(
+						mlx_key_data_t keydata, t_map_params *map_params);
+void				go_down(
+						mlx_key_data_t keydata, t_map_params *map_params);
+void				go_up(mlx_key_data_t keydata, t_map_params *map_params);
 
-// move_player.c
-void					movement_right(t_map_params *map_params);
-void					movement_left(t_map_params *map_params);
-void					movement_down(t_map_params *map_params);
-void					movement_up(t_map_params *map_params);
+// move_player_bonus.c
+void				put_steps_counter(t_map_params *map_params);
+void				movement_right(t_map_params *map_params);
+void				movement_left(t_map_params *map_params);
+void				movement_down(t_map_params *map_params);
+void				movement_up(t_map_params *map_params);
 
-// end_game.c
-void					take_collectibles(t_map_params *map_params);
-void					end_game(t_map_params *map_params);
+// end_game_bonus.c
+void				take_collectibles(t_map_params *map_params);
+void				end_game(t_map_params *map_params);
 
-// free_map.c
-void					free_map(t_map_params *map_params);
-void					free_visited(t_map_params *map_params);
-void					free_map_render(t_map_params *map_params);
+// free_map_bonus.c
+void				free_map(t_map_params *map_params);
+void				free_visited(t_map_params *map_params);
+void				free_map_render(t_map_params *map_params);
 
 #endif
