@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:23:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/07 21:30:16 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:10:57 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,21 @@ void	put_player(t_map_params *map_params, int *x, int *y)
 {
 	put_floor(map_params, x, y);
 	mlx_image_to_window(map_params->map_render->mlx,
-		map_params->map_render->p_stand, *x, *y);
-	mlx_set_instance_depth(map_params->map_render->p_stand->instances, 3);
+		map_params->map_render->p_down, *x, *y);
+	mlx_set_instance_depth(map_params->map_render->p_down->instances, 3);
+	map_params->map_render->p_down->instances->enabled = true;
+	mlx_image_to_window(map_params->map_render->mlx,
+		map_params->map_render->p_up, *x, *y);
+	mlx_set_instance_depth(map_params->map_render->p_up->instances, 3);
+	map_params->map_render->p_up->instances->enabled = false;
+	mlx_image_to_window(map_params->map_render->mlx,
+		map_params->map_render->p_right, *x, *y);
+	mlx_set_instance_depth(map_params->map_render->p_right->instances, 3);
+	map_params->map_render->p_right->instances->enabled = false;
+	mlx_image_to_window(map_params->map_render->mlx,
+		map_params->map_render->p_left, *x, *y);
+	mlx_set_instance_depth(map_params->map_render->p_left->instances, 3);
+	map_params->map_render->p_left->instances->enabled = false;
 	map_params->player_x = *x;
 	map_params->player_y = *y;
 }

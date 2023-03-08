@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 13:46:38 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:09:08 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,19 @@ typedef struct s_map_render
 	mlx_texture_t	*open_exit_texture;
 	mlx_texture_t	*collectible_texture;
 	mlx_texture_t	*wall_texture;
-	mlx_texture_t	*p_stand_texture;
+	mlx_texture_t	*p_down_texture;
+	mlx_texture_t	*p_up_texture;
+	mlx_texture_t	*p_right_texture;
+	mlx_texture_t	*p_left_texture;
 	mlx_image_t		*floor;
 	mlx_image_t		*exit;
 	mlx_image_t		*open_exit;
 	mlx_image_t		*collectible;
 	mlx_image_t		*wall;
-	mlx_image_t		*p_stand;
+	mlx_image_t		*p_down;
+	mlx_image_t		*p_up;
+	mlx_image_t		*p_right;
+	mlx_image_t		*p_left;
 }	t_map_render;
 
 typedef struct s_map_params
