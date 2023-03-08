@@ -3,6 +3,7 @@ ToDo:
 ! check Danila's makefile and add install rule
 ! delete LDFLAGS and -g flags from makefile
  $(LDFLAGS)
+! delete FSANFLAG in makefile
 ! delete print OK in main.c
 ! in makefile
 mlx:
@@ -31,6 +32,10 @@ is encountered in the file,
 the program must exit in a clean way,
 and return "Error\n" followed by an
 explicit error message of your choice.
+
+Bonus
+	// mlx_loop_hook(
+	// 	map_params->map_render->mlx, &my_loop_hook, map_params);
 ----------------------------------------------
 Questions:
 

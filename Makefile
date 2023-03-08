@@ -1,21 +1,17 @@
 
 CC = cc
 NAME = so_long
-SRC = end_game.c\
-free_map.c\
-go_player.c\
-initialize_image.c\
-main.c\
-map_check_utils.c\
-map_check.c\
-move_player.c\
-my_hooks.c\
-path_in_map_check.c\
-put_images.c\
-read_map_utils.c\
-read_map.c\
-render_map.c\
-start_game.c
+SRC = src/end_game.c\
+src/free_map.c\
+src/go_player.c\
+src/main.c\
+src/map_check.c\
+src/move_player.c\
+src/path_in_map_check.c\
+src/put_images.c\
+src/read_map_utils.c\
+src/read_map.c\
+src/start_game.c
 
 OBJ = $(SRC:.c=.o)
 MLX42 := ./lib/MLX42
