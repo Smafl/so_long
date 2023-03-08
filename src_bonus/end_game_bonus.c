@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_game.c                                         :+:      :+:    :+:   */
+/*   end_game_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:03:51 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 15:35:19 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:11:08 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "private.h"
+#include "private_bonus.h"
 
 void	take_collectibles(t_map_params *map_params)
 {

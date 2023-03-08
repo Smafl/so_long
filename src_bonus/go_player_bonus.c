@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   go_player.c                                        :+:      :+:    :+:   */
+/*   go_player_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:41:57 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 15:45:59 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:50:31 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "private.h"
+#include "private_bonus.h"
 
 void	my_keyhook(mlx_key_data_t keydata, t_map_params *map_params)
 {

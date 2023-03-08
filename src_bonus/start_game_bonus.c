@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   start_game_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:38:50 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 15:45:05 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:49:44 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "private.h"
+#include "private_bonus.h"
 
 int	start_game(t_map_params *map_params, int fd)
 {
