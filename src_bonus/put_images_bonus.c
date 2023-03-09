@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:23:13 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/09 16:32:42 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:11:54 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	put_images(t_map_params *map_params, int *x, int *y)
 {
 	int	index;
 
-	index = get_index(map_params, *x / 32, *y / 32);
+	index = get_index(map_params, *x / STEP, *y / STEP);
 	if (map_params->map[index] == WALL)
 	{
 		mlx_image_to_window(

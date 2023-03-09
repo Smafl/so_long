@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/09 16:19:49 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:54:49 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_map_params
 	int				player;
 	int				player_x;
 	int				player_y;
+	int				enemy_x;
+	int				enemy_y;
 	int				steps_counter;
 	int				sprite_index;
 	bool			*visited;
@@ -111,8 +113,19 @@ bool				path_exists(t_map_params *map_params);
 
 // start_game_bonus.c
 int					start_game(t_map_params *map_params, int fd);
-void				initialize_game_images(t_map_params *map_params);
 void				render_map(t_map_params *map_params);
+void				put_steps_counter(t_map_params *map_params);
+void				set_color(
+						mlx_image_t *img, uint8_t r, uint8_t g, uint8_t b);
+
+// initialize_game_images_bonus.c
+void				initialize_game_images(t_map_params *map_params);
+
+// enemy_bonus.c
+void				loop(void *param);
+void				draw_sprite(
+						mlx_image_t *img, mlx_texture_t *tex, int offset);
+void				touch_enemy(t_map_params *map_params);
 
 // put_images_bonus.c
 void				put_images(t_map_params *map_params, int *x, int *y);
@@ -133,7 +146,6 @@ void				go_down(
 void				go_up(mlx_key_data_t keydata, t_map_params *map_params);
 
 // move_player_bonus.c
-void				put_steps_counter(t_map_params *map_params);
 void				movement_right(t_map_params *map_params);
 void				movement_left(t_map_params *map_params);
 void				movement_down(t_map_params *map_params);

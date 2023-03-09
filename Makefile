@@ -16,8 +16,10 @@ src/read_map.c\
 src/start_game.c
 
 SRC_BNS = src_bonus/end_game_bonus.c\
+src_bonus/enemy_bonus.c\
 src_bonus/free_map_bonus.c\
 src_bonus/go_player_bonus.c\
+src_bonus/initialize_game_images_bonus.c\
 src_bonus/main_bonus.c\
 src_bonus/map_check_bonus.c\
 src_bonus/move_player_bonus.c\
@@ -37,8 +39,8 @@ CFLAGS += -g
 LDFLAGS = -L../LeakSanitizer -llsan -lc++ -Wno-gnu-include-next -I ../LeakSanitize
 FSANFLAG += -fsanitize=address -Ofast
 
-# GLFW = /Users/$$USER/.brew/opt/glfw/lib/
-GLFW = /opt/homebrew/Cellar/glfw/3.3.8/lib
+GLFW = /Users/$$USER/.brew/opt/glfw/lib/
+#GLFW = /opt/homebrew/Cellar/glfw/3.3.8/lib
 
 
 all: mlx ft_printf libft $(NAME)
@@ -85,6 +87,8 @@ fclean_bonus: clean_bonus
 	@$(MAKE) -C $(LIBFT) fclean
 
 re: fclean all
+
+re_bonus: fclean_bonus bonus
 
 .PHONY: all clean fclean re mlx ft_printf libft bonus clean_bonus fclean_bonus
 

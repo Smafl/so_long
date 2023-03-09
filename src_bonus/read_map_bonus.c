@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 02:50:23 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 18:31:55 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:19:58 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 
 bool	read_map(t_map_params *map_params, int fd)
 {
-	int				width;
+	int				width_temp;
 	int				read_bytes;
 	char			c;
 
-	width = 0;
+	width_temp = 0;
 	map_init(map_params);
 	read_bytes = 1;
 	while (read_bytes == 1)
 	{
 		read_bytes = read(fd, &c, 1);
-		if (!read_bytes_check(map_params, &read_bytes, &width, c))
+		if (!read_bytes_check(map_params, &read_bytes, &width_temp, c))
 			return (false);
 	}
 	if (!map_verify(map_params))
@@ -36,21 +36,21 @@ bool	read_map(t_map_params *map_params, int fd)
 }
 
 bool	read_bytes_check(
-	t_map_params *map_params, int *read_bytes, int *width, char c)
+	t_map_params *map_params, int *read_bytes, int *width_temp, char c)
 {
 	if (*read_bytes == -1)
 	{
 		perror("Error\nread() failed");
 		return (false);
 	}
-	else if (*width == 0 && c == '\n')
+	else if (*width_temp == 0 && c == '\n')
 	{
 		ft_printf("Error\nthere is an empty line in a map\n");
 		return (false);
 	}
 	else
 	{
-		if (!map_fill_in(map_params, c, read_bytes, width))
+		if (!map_fill_in(map_params, c, read_bytes, width_temp))
 			return (false);
 	}
 	return (true);

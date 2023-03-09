@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:16:09 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 19:32:57 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:53:57 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	free_texture(t_map_params *map_params)
 	mlx_delete_texture(map_params->map_render->p_up_texture);
 	mlx_delete_texture(map_params->map_render->p_right_texture);
 	mlx_delete_texture(map_params->map_render->p_left_texture);
+	mlx_delete_texture(map_params->map_render->enemy_texture);
 }
 
 static void	free_image(t_map_params *map_params)
@@ -55,6 +56,8 @@ static void	free_image(t_map_params *map_params)
 		map_params->map_render->mlx, map_params->map_render->p_right);
 	mlx_delete_image(
 		map_params->map_render->mlx, map_params->map_render->p_left);
+	mlx_delete_image(
+		map_params->map_render->mlx, map_params->map_render->enemy);
 }
 
 void	free_map_render(t_map_params *map_params)
