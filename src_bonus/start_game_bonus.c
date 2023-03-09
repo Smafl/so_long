@@ -6,11 +6,50 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:38:50 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 21:57:45 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:14:49 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private_bonus.h"
+
+void	draw_sprite(mlx_image_t *img, mlx_texture_t *tex, int offset)
+{
+	int	x;
+	int	y;
+	int	index_img;
+	int	index_tex;
+
+	y = 0;
+	while (y < STEP)
+	{
+		x = 0;
+		while (x < STEP)
+		{
+			index_img = (y * STEP + x) * 4;
+			index_tex = (y * STEP * 9 + x + offset * STEP) * 4;
+			img->pixels[index_img + 0] = tex->pixels[index_tex + 0];
+			img->pixels[index_img + 1] = tex->pixels[index_tex + 1];
+			img->pixels[index_img + 2] = tex->pixels[index_tex + 2];
+			img->pixels[index_img + 3] = tex->pixels[index_tex + 3];
+			x++;
+		}
+		y++;
+	}
+}
+
+void	loop(void *param)
+{
+	t_map_params	*map_params;
+
+	map_params = param;
+	(void) map_params;
+	if (map_params->sprite_index % 16 == 0)
+		draw_sprite(
+			map_params->map_render->enemy,
+			map_params->map_render->enemy_texture,
+			(map_params->sprite_index / 16) % 9);
+	map_params->sprite_index++;
+}
 
 int	start_game(t_map_params *map_params, int fd)
 {
@@ -23,7 +62,7 @@ int	start_game(t_map_params *map_params, int fd)
 	initialize_game_images(map_params);
 	mlx_key_hook(
 		map_params->map_render->mlx, (mlx_keyfunc) my_keyhook, map_params);
-	// mlx_loop_hook(map_params->map_render->mlx, );
+	mlx_loop_hook(map_params->map_render->mlx, loop, map_params);
 	mlx_loop(map_params->map_render->mlx);
 	end_game(map_params);
 	return (0);
@@ -46,6 +85,8 @@ static void	initialize_texture(t_map_params *map_params)
 			"img/p_right_32.png");
 	map_params->map_render->p_left_texture = mlx_load_png(
 			"img/p_left_32.png");
+	map_params->map_render->enemy_texture = mlx_load_png(
+			"img/enemy_32.png");
 }
 
 static void	initialize_image(t_map_params *map_params)
@@ -74,6 +115,8 @@ static void	initialize_image(t_map_params *map_params)
 	map_params->map_render->p_left = mlx_texture_to_image(
 			map_params->map_render->mlx,
 			map_params->map_render->p_left_texture);
+	map_params->map_render->enemy = mlx_new_image(
+			map_params->map_render->mlx, 32, 32);
 }
 
 void	initialize_game_images(t_map_params *map_params)
@@ -83,7 +126,9 @@ void	initialize_game_images(t_map_params *map_params)
 			map_params->height * STEP, "Welcome to Kupchino", true);
 	initialize_texture(map_params);
 	initialize_image(map_params);
-	render_map(map_params);
+	// render_map(map_params);
+	mlx_image_to_window(map_params->map_render->mlx, map_params->map_render->enemy, 0, 32);
+	mlx_set_instance_depth(map_params->map_render->enemy->instances, 0);
 }
 
 void	render_map(t_map_params *map_params)

@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 19:35:58 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 19:22:35 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/09 16:19:49 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_map_render
 	mlx_texture_t	*p_up_texture;
 	mlx_texture_t	*p_right_texture;
 	mlx_texture_t	*p_left_texture;
+	mlx_texture_t	*enemy_texture;
 	mlx_image_t		*floor;
 	mlx_image_t		*exit;
 	mlx_image_t		*open_exit;
@@ -55,6 +56,7 @@ typedef struct s_map_render
 	mlx_image_t		*p_right;
 	mlx_image_t		*p_left;
 	mlx_image_t		*steps;
+	mlx_image_t		*enemy;
 }	t_map_render;
 
 typedef struct s_map_params
@@ -74,6 +76,7 @@ typedef struct s_map_params
 	int				player_x;
 	int				player_y;
 	int				steps_counter;
+	int				sprite_index;
 	bool			*visited;
 	t_map_render	*map_render;
 }	t_map_params;
