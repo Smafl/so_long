@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:01:35 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/09 22:30:47 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:33:32 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,6 @@ static void	initialize_image_bonus(t_map_params *map_params)
 			map_params->map_render->mlx, 32, 32);
 }
 
-int	random_line(t_map_params *map_params)
-{
-	int			time;
-	int static	seed_r = 198;
-
-	time = (int)mlx_get_time();
-	seed_r = seed_r * seed_r * time * 3456789;
-	ft_printf("seed %d, time %d\n", seed_r, time);
-	return (seed_r % map_params->height);
-}
-
 void	initialize_game_images(t_map_params *map_params)
 {
 	map_params->map_render = malloc(sizeof(t_map_render));
@@ -87,10 +76,7 @@ void	initialize_game_images(t_map_params *map_params)
 	initialize_image(map_params);
 	initialize_image_bonus(map_params);
 	render_map(map_params);
-	// mlx_image_to_window(
-	// 	map_params->map_render->mlx, map_params->map_render->enemy,
-	// 	0, random_line(map_params));
 	mlx_image_to_window(
 		map_params->map_render->mlx, map_params->map_render->enemy,
-		0, 32);
+		map_params->enemy_x, map_params->enemy_y);
 }

@@ -6,18 +6,18 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:30:45 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/09 22:31:55 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:33:19 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "private_bonus.h"
+#include <math.h>
 
 void	loop(void *param)
 {
-	int				i;
 	t_map_params	*map_params;
+	int				new_y;
 
-	i = 0;
 	map_params = param;
 	if (map_params->sprite_index % 16 == 0)
 		draw_sprite(
@@ -25,19 +25,16 @@ void	loop(void *param)
 			map_params->map_render->enemy_texture,
 			(map_params->sprite_index / 16) % 9);
 	map_params->sprite_index++;
-	while (i != 10000)
+	map_params->map_render->enemy->instances[0].x += 1;
+	map_params->enemy_x += 1;
+	if (map_params->map_render->enemy->instances[0].x
+		>= map_params->width * STEP)
 	{
-		if (i == 999)
-		{
-			map_params->map_render->enemy->instances[0].x += 1;
-			map_params->enemy_x += 1;
-		}
-		if (map_params->width * STEP == map_params->map_render->enemy->instances[0].x)
-		{
-			map_params->map_render->enemy->instances[0].x = 0;
-			map_params->enemy_x = 0;
-		}
-		i++;
+		map_params->map_render->enemy->instances[0].x = -STEP;
+		map_params->enemy_x = -STEP;
+		new_y = (rand() % (map_params->height - 2) + 1) * STEP;
+		map_params->map_render->enemy->instances[0].y = new_y;
+		map_params->enemy_y = new_y;
 	}
 	touch_enemy(map_params);
 }
