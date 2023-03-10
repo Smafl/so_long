@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 13:16:09 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/08 16:51:08 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 21:49:27 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,9 @@ static void	free_texture(t_map_params *map_params)
 	mlx_delete_texture(map_params->map_render->p_left_texture);
 }
 
-static void	free_image(t_map_params *map_params)
-{
-	mlx_delete_image
-		(map_params->map_render->mlx, map_params->map_render->floor);
-	mlx_delete_image(map_params->map_render->mlx, map_params->map_render->exit);
-	mlx_delete_image(
-		map_params->map_render->mlx, map_params->map_render->open_exit);
-	mlx_delete_image(
-		map_params->map_render->mlx, map_params->map_render->collectible);
-	mlx_delete_image(map_params->map_render->mlx, map_params->map_render->wall);
-	mlx_delete_image(
-		map_params->map_render->mlx, map_params->map_render->p_down);
-	mlx_delete_image(
-		map_params->map_render->mlx, map_params->map_render->p_up);
-	mlx_delete_image(
-		map_params->map_render->mlx, map_params->map_render->p_right);
-	mlx_delete_image(
-		map_params->map_render->mlx, map_params->map_render->p_left);
-}
-
 void	free_map_render(t_map_params *map_params)
 {
 	free_texture(map_params);
-	free_image(map_params);
 	free(map_params->map_render);
 	map_params->map_render = NULL;
 }
