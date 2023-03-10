@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 17:41:57 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/09 20:29:53 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:58:21 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	my_keyhook(mlx_key_data_t keydata, t_map_params *map_params)
 
 void	go_right(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_PRESS)
 	{
 		if (get_cell(map_params, map_params->player_x / STEP + 1,
 				map_params->player_y / STEP) == WALL)
@@ -49,7 +49,7 @@ void	go_right(mlx_key_data_t keydata, t_map_params *map_params)
 
 void	go_left(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_PRESS)
 	{
 		if (get_cell(map_params, map_params->player_x / STEP - 1,
 				map_params->player_y / STEP) == WALL)
@@ -67,7 +67,7 @@ void	go_left(mlx_key_data_t keydata, t_map_params *map_params)
 
 void	go_down(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_PRESS)
 	{
 		if (get_cell(map_params, map_params->player_x / STEP,
 				map_params->player_y / STEP + 1) == WALL)
@@ -85,7 +85,7 @@ void	go_down(mlx_key_data_t keydata, t_map_params *map_params)
 
 void	go_up(mlx_key_data_t keydata, t_map_params *map_params)
 {
-	if (keydata.action == MLX_REPEAT || keydata.action == MLX_RELEASE)
+	if (keydata.action == MLX_REPEAT || keydata.action == MLX_PRESS)
 	{
 		if (get_cell(map_params, map_params->player_x / STEP,
 				map_params->player_y / STEP - 1) == WALL)

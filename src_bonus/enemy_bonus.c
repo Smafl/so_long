@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:30:45 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/10 13:33:19 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 14:52:12 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	loop(void *param)
 			map_params->map_render->enemy_texture,
 			(map_params->sprite_index / 16) % 9);
 	map_params->sprite_index++;
-	map_params->map_render->enemy->instances[0].x += 1;
-	map_params->enemy_x += 1;
+	map_params->map_render->enemy->instances[0].x += 2;
+	map_params->enemy_x += 2;
 	if (map_params->map_render->enemy->instances[0].x
 		>= map_params->width * STEP)
 	{
