@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:38:50 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/09 20:27:07 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:09:35 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,13 @@ void	set_color(mlx_image_t *img, uint8_t r, uint8_t g, uint8_t b)
 		img->pixels[i * 4 + 2] = b;
 	}
 }
+
+/*
+Each pixel is 4 bytes.
+The first three bytes represent the RGB colors values and
+the fourth byte represents the alpha value.
+
+Before setting the color, the function checks the alpha channel:
+if it's zero then the pixel is fully transparent, the function
+skips this pixel.
+*/

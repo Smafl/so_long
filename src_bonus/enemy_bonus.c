@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:30:45 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/10 16:12:37 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 19:51:37 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	loop(void *param)
 	int				new_y;
 
 	map_params = param;
-	if (map_params->sprite_index % 16 == 0)
+	if (map_params->sprite_index % 8 == 0)
 		draw_sprite(
 			map_params->map_render->enemy,
 			map_params->map_render->enemy_texture,
-			(map_params->sprite_index / 16) % 9);
+			(map_params->sprite_index / 8) % 9);
 	map_params->sprite_index++;
 	map_params->map_render->enemy->instances[0].x += 2;
 	map_params->enemy_x += 2;
@@ -70,6 +70,17 @@ void	touch_enemy(t_map_params *map_params)
 		&& map_params->enemy_x >= map_params->player_x
 		&& map_params->enemy_x <= map_params->player_x + STEP)
 	{
+		ft_printf("Pigeon won 😁\n");
 		end_game(map_params);
 	}
 }
+
+/*
+Loop: sprite_index is used as a counter,
+then dividing by 8 makes it 8 times slower
+and modulo 9 because there are 9 pictures in spritesheet.
+
+Draw_sprite: the function works by iterating over each pixel
+of the sprite, copying the color values from the texture
+to the corresponding pixels of the image.
+*/
