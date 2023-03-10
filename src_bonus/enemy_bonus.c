@@ -6,7 +6,7 @@
 /*   By: ekulichk <ekulichk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:30:45 by ekulichk          #+#    #+#             */
-/*   Updated: 2023/03/10 14:52:12 by ekulichk         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:12:37 by ekulichk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	draw_sprite(mlx_image_t *img, mlx_texture_t *tex, int offset)
 
 void	touch_enemy(t_map_params *map_params)
 {
-	if (map_params->player_x == map_params->enemy_x
-		&& map_params->player_y == map_params->enemy_y)
+	if (map_params->player_y == map_params->enemy_y
+		&& map_params->enemy_x >= map_params->player_x
+		&& map_params->enemy_x <= map_params->player_x + STEP)
 	{
 		end_game(map_params);
 	}
